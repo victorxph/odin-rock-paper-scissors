@@ -29,23 +29,23 @@ function getComputerChoice() {
     
 }
 
-// getPlayerChoice();
-// getComputerChoice();
+getPlayerChoice();
+getComputerChoice();
 
 // Create function fot the player choice
 function getPlayerChoice() {
     
-    playerSelection = prompt('Rock, Paper or Scissors?')
+    playerSelection = prompt('Rock, Paper or Scissors?').toLowerCase();
 
-    if (playerSelection === rock) {
+    if (playerSelection === rock.toLowerCase()) {
 
         playerSelection = rock
 
-    } else if (playerSelection === paper) {
+    } else if (playerSelection === paper.toLowerCase()) {
 
         playerSelection = paper
 
-    } else if (playerSelection === scissors) {
+    } else if (playerSelection === scissors.toLowerCase()) {
 
         playerSelection = scissors
 
@@ -60,23 +60,41 @@ function getPlayerChoice() {
 }
 
 let roundResult;
-let tie;
-let win;
-let lose;
 
 function getRoundResult(){
     
     if (computerSelection === playerSelection) {
 
-        roundResult = tie
+        roundResult = 'Ties!'
 
-    } else if ()
+    } else if (playerSelection === rock && computerSelection === scissors) {
+
+        roundResult = 'Player wins!'
+        
+    } else if (playerSelection === rock && computerSelection === paper) {
+        
+        roundResult = 'Player lose!'
+        
+    } else if (playerSelection === paper && computerSelection === rock) {
+        
+        roundResult = 'Player wins!'
+        
+    } else if (playerSelection === paper && computerSelection === scissors) {
+        
+        roundResult = 'Player lose!'
+        
+    } else if (playerSelection === scissors && computerSelection === paper) {
+        
+        roundResult = 'Player wins!'
+        
+    } else if (playerSelection === scissors && computerSelection === rock) {
+        
+        roundResult = 'Player lose!'
+        
+    } 
     
-    console.log('Player: ')
-    console.log('Player: ')
-    console.log('Computer: ')
-    console.log('Computer: ')
-    console.log('Ties!')
-
+    console.log(roundResult)
 
 }
+
+getRoundResult();
