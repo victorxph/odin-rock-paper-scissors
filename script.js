@@ -60,38 +60,30 @@ function getPlayerChoice() {
 }
 
 let roundResult;
+let tie = 'Ties!';
+let win = 'Player wins!'
+let lose = 'Player lose!'
 
+
+// Create function to get the round result
 function getRoundResult(){
     
     if (computerSelection === playerSelection) {
 
-        roundResult = 'Ties!'
+        roundResult = tie
 
-    } else if (playerSelection === rock && computerSelection === scissors) {
+    }  else if (
+     (playerSelection === rock && computerSelection === scissors) ||
+     (playerSelection === paper && computerSelection === rock) || 
+     (playerSelection === scissors && computerSelection === paper)){
 
-        roundResult = 'Player wins!'
-        
-    } else if (playerSelection === rock && computerSelection === paper) {
-        
-        roundResult = 'Player lose!'
-        
-    } else if (playerSelection === paper && computerSelection === rock) {
-        
-        roundResult = 'Player wins!'
-        
-    } else if (playerSelection === paper && computerSelection === scissors) {
-        
-        roundResult = 'Player lose!'
-        
-    } else if (playerSelection === scissors && computerSelection === paper) {
-        
-        roundResult = 'Player wins!'
-        
-    } else if (playerSelection === scissors && computerSelection === rock) {
-        
-        roundResult = 'Player lose!'
-        
-    } 
+        roundResult = win
+
+     } else {
+
+        roundResult = lose
+
+     }
     
     console.log(roundResult)
 
