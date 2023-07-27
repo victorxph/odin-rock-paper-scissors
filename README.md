@@ -1,0 +1,1 @@
+First JS project from TOP, keep it simple for now output on the console etc, GUI soon to be created in next lessons. I was looking forward for this project, hope i encounter challenges here and overcome them.
