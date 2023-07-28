@@ -27,6 +27,7 @@ function getComputerChoice() {
 
 
 function playRound(playerSelection, computerSelection){
+
     console.log('Computer: ', computerSelection)
     console.log('Player: ', playerSelection)
     
@@ -50,7 +51,25 @@ function playRound(playerSelection, computerSelection){
         
     }
     
-console.log(playRound(rock, getComputerChoice()))
+// console.log(playRound(rock, getComputerChoice()));
+
+let count = 1;
+let roundResult = playRound(rock, getComputerChoice());
+
+while (roundResult != 'Ties!' &&  count <= 5){
+
+    
+    console.log(roundResult);
+    count++
+
+}
+
+function getWinner(){
+
+
+
+}
+
 
 
 
