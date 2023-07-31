@@ -3,6 +3,7 @@ let rock = 'Rock'
 let paper = 'Paper'
 let scissors = 'Scissors'
 
+// Vaiables for player and computer choices respectively
 let playerSelection;
 let computerSelection;
 
@@ -55,11 +56,12 @@ function getPlayerChoice() {
     
 }
 
+// Variables to store and display the round result
 let roundResultLog;
 let roundResult;
 
-
-function playRound(playerSelection, computerSelection){
+// Function to run a single round
+function playRound(){
     
     computerSelection = getComputerChoice();
     playerSelection = getPlayerChoice();;
@@ -98,22 +100,55 @@ function playRound(playerSelection, computerSelection){
         
     }
     
-    // console.log(playRound(rock, getComputerChoice()));
-    playRound();
 
-let count = 1;
-
+// Function to run the whole game and verify the winner 
 function getWinner(){
-    
-    while (count <= 5){
+        
+        let count = 0;
+        let wins = 0;
+        let losts = 0;
+        let GameResult;
+
+    while (wins < 5 && losts < 5){
     
         playRound();
-        console.log(roundResult);
         count++
+
+        if (roundResult === 'tie'){
+
+            count--
+
+        } else if (roundResult === 'win') {
+
+            wins++
+            // debugger;
+            
+        } else if (roundResult === 'lose') {
+            
+            losts++
+            // debugger;
+
+        }
+
+        
+        
+    }
+    
+    if(wins >= 5) {
+    
+        GameResult = 'Congratulations, you win!'
+        console.log(GameResult)
+        
+    } else if (losts >= 5) {
+        
+        GameResult = "I'm sorry, you lost!"
+        console.log(GameResult)
     
     }
 
 }
+
+getWinner();
 
 
 
