@@ -88,6 +88,8 @@ let computerSign = document.querySelector('#signComputer');
 let playerPoints = document.querySelector('.playerPoints');
 let computerPoints = document.querySelector('.computerPoints')
 
+
+
 // Function to run a single round
 function playRound(){
     
@@ -197,13 +199,13 @@ function playRound(){
 
 let picksDiv = document.querySelector('#picks');
 let container = document.querySelector('.container');
+let resetBtn = document.createElement('button');
+resetBtn.textContent = 'PLAY AGAIN'
 
 // Function to run the whole game and verify the winner 
 function getWinner(){
-        
-        let gameResult;
-        let resetBtn = document.createElement('button');
-        resetBtn.textContent = 'PLAY AGAIN'
+
+    let gameResult;
     
     if(wins >= 5) {
     
@@ -213,6 +215,7 @@ function getWinner(){
         wins = 0;
         losts = 0;
         container.appendChild(resetBtn);
+        picksDiv.remove();
         
         
     } else if (losts >= 5) {
@@ -223,6 +226,22 @@ function getWinner(){
         wins = 0;
         losts = 0;
         container.appendChild(resetBtn);
+        picksDiv.remove();
     }
+
+}
+
+resetBtn.addEventListener('click', resetGame)
+
+function resetGame() {
+
+    resH2.textContent = 'Pick your weapon'
+    resPara.textContent = 'First to score 5 wins'
+    playerSign.textContent = '❔'
+    computerSign.textContent = '❔'
+    playerPoints.textContent = 'Player: 0'
+    computerPoints.textContent = 'Computer: 0'
+    container.removeChild(resetBtn);
+    container.appendChild(picksDiv)
 
 }
