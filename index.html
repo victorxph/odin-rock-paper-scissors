@@ -4,9 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissor</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1>Rock Paper Scissor</h1>
+
+    <div class="container">
+        
+        <div class="result">
+
+            <h2 class="resH2">Pick your weapon</h2>
+            <h3 class="resPara">First to score 5 wins</h3>
+
+        </div>
+
+        <div class="score">
+
+            <div class="playerScore">
+                <div id="signPlayer">❔</div>
+                <h3 class="playerPoints">Player: 0</h3>
+            </div>
+
+            <div class="computerScore">
+                <div id="signComputer">❔</div>
+                <h3 class="computerPoints">Computer: 0</h3>
+            </div>
+
+
+        </div>
+
+        <div id="picks">
+            <button class="picks" id="rock">✊</button>
+            <button class="picks" id="paper">👋</button>
+            <button class="picks" id="scissors">✌️</button>
+        </div>
+    </div>
 </body>
 <script src="script.js"></script>
 </html>

@@ -1,10 +1,11 @@
+//basis variables
 let rock = 'Rock'
 let paper = 'Paper'
 let scissors = 'Scissors'
 
-let computerSelection;
+// Variables for player and computer choices
 let playerSelection;
-
+let computerSelection;
 
 // Create function for the computer choice
 function getComputerChoice() {
@@ -13,80 +14,215 @@ function getComputerChoice() {
 
     if (randomValue < 1/3) {
 
-        computerSelection = rock
+        return rock
         
     } else if (randomValue < 2/3) {
 
-        computerSelection = paper
+        return paper
 
     } else {
-
-        computerSelection = scissors
-
+        
+        return scissors
+        
     }
-
-    console.log("Computer: ", computerSelection)
+    
     
 }
 
-getPlayerChoice();
-getComputerChoice();
+let rockBtn = document.querySelector('#rock')
+
+let paperBtn = document.querySelector('#paper')
+
+let scissorsBtn = document.querySelector('#scissors')
+
+rockBtn.addEventListener('click', getRock)
+
+paperBtn.addEventListener('click', getPaper)
+
+scissorsBtn.addEventListener('click', getScissors)
+
+function getRock (){
+
+    playerSelection = rock;
+    playRound();
+    return rock;
+    
+}
+
+function getPaper (){
+    
+    playerSelection = paper;
+    playRound();
+    return paper;
+    
+}
+
+function getScissors (){
+    
+    playerSelection = scissors;
+    playRound();
+    return scissors;
+
+}
+
 
 // Create function fot the player choice
 function getPlayerChoice() {
+
+    return playerSelection;
     
-    playerSelection = prompt('Rock, Paper or Scissors?').toLowerCase();
+}
 
-    if (playerSelection === rock.toLowerCase()) {
+// Variables to store and display the round result
+let roundResultLog;
+let roundResult;
 
-        playerSelection = rock
+let index = 0;
+let wins = 0;
+let losts = 0;
 
-    } else if (playerSelection === paper.toLowerCase()) {
+let resH2 = document.querySelector('.resH2');
+let resPara = document.querySelector('.resPara');
+let playerSign = document.querySelector('#signPlayer');
+let computerSign = document.querySelector('#signComputer');
+let playerPoints = document.querySelector('.playerPoints');
+let computerPoints = document.querySelector('.computerPoints')
 
-        playerSelection = paper
-
-    } else if (playerSelection === scissors.toLowerCase()) {
-
-        playerSelection = scissors
-
-    } else {
-
-        alert('Invalid value. Rock Paper or Scissors?')
-
-    }
-
+// Function to run a single round
+function playRound(){
+    
+    computerSelection = getComputerChoice();
+    playerSelection = getPlayerChoice();;
+    
+    console.log('Computer: ', computerSelection)
     console.log('Player: ', playerSelection)
     
-}
 
-let roundResult;
-let tie = 'Ties!';
-let win = 'Player wins!'
-let lose = 'Player lose!'
-
-
-// Create function to get the round result
-function getRoundResult(){
-    
     if (computerSelection === playerSelection) {
 
-        roundResult = tie
+        roundResultLog = 'Ties!'
+        roundResult = 'tie'
+        console.log(roundResultLog)
+        console.log(roundResult)
+        updateScore();
+        
+    } else if (
+        (playerSelection === rock && computerSelection === scissors) ||
+        (playerSelection === paper && computerSelection === rock) || 
+        (playerSelection === scissors && computerSelection === paper)){
+            
+            roundResultLog = `You wins! ${playerSelection} beats ${computerSelection}`;
+            roundResult = 'win'
+            console.log(roundResultLog)
+            console.log(roundResult)
+            wins++
+            console.log(wins)
+            updateScore();
+            
+            
+        } else {
+            
+            roundResultLog = `You lose! ${computerSelection} beats ${playerSelection}`;
+            roundResult = 'lose'
+            console.log(roundResultLog)
+            console.log(roundResult)
+            losts++
+            console.log(losts)
+            updateScore();
+            
+        }
+        
+        if (wins >= 5 || losts >= 5) {
+            
+            getWinner()
+           
+            
+        }
+        
+        
+        function updateScore () {
 
-    }  else if (
-     (playerSelection === rock && computerSelection === scissors) ||
-     (playerSelection === paper && computerSelection === rock) || 
-     (playerSelection === scissors && computerSelection === paper)){
+        
+        if (roundResult === 'win'){
+            
+            resH2.textContent = 'You win!';
+            resPara.textContent = `${playerSelection} beats ${computerSelection}`;
+            playerPoints.textContent = `Player: ${wins}`
+            
+            
+            
+        } else if (roundResult === 'lose'){
+            
+            resH2.textContent = 'You lose!';
+            resPara.textContent = `${computerSelection} beats ${playerSelection}`;
+            computerPoints.textContent = `Computer: ${losts}`
+            
+        } else if (roundResult === 'tie'){
+            
+            resH2.textContent = 'Round ties!';
+            resPara.textContent = `${computerSelection} & ${playerSelection}`;
+            
+        }
 
-        roundResult = win
+        if (computerSelection === rock){
+            computerSign.innerText = '✊';
+            
+        } else if (computerSelection === paper){
+            
+            computerSign.innerText = '👋';
 
-     } else {
+        } else if (computerSelection === scissors){
+            
+            computerSign.innerText = '✌️';
 
-        roundResult = lose
+        }
 
-     }
+        if (playerSelection === rock){
+
+            playerSign.innerText = '✊';
+            
+        } else if (playerSelection === paper){
+            
+            playerSign.innerText = '👋';
+
+        } else if (playerSelection === scissors){
+            
+            playerSign.innerText = '✌️';
+
+        }
+        
+    }
     
-    console.log(roundResult)
-
 }
 
-getRoundResult();
+let picksDiv = document.querySelector('#picks');
+let container = document.querySelector('.container');
+
+// Function to run the whole game and verify the winner 
+function getWinner(){
+        
+        let gameResult;
+        let resetBtn = document.createElement('button');
+        resetBtn.textContent = 'PLAY AGAIN'
+    
+    if(wins >= 5) {
+    
+        gameResult = 'Congratulations, you win!'
+        resH2.textContent = gameResult
+        console.log(gameResult)
+        wins = 0;
+        losts = 0;
+        container.appendChild(resetBtn);
+        
+        
+    } else if (losts >= 5) {
+        
+        gameResult = "I'm sorry, you lost!"
+        resH2.textContent = gameResult
+        console.log(gameResult)
+        wins = 0;
+        losts = 0;
+        container.appendChild(resetBtn);
+    }
+
+}
