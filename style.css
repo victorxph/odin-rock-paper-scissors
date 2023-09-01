@@ -106,6 +106,7 @@ button.picks{
 button.picks:hover{
     
     background-color: #e0e0e021;
+    scale: 1.05;
 
 }
 
