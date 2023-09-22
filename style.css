@@ -110,3 +110,18 @@ button.picks:hover{
 
 }
 
+footer{
+
+    position: fixed;
+    bottom: 0;
+    margin-bottom: 10px;
+    color: #fff;
+
+}
+
+a.gitHubLink, a.gitHubLink:visited{
+
+    text-decoration: none;
+    color: white;
+
+}
